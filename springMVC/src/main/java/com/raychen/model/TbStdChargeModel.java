@@ -14,6 +14,7 @@ public class TbStdChargeModel {
     private String time;
     private Integer opType;
     private String op;
+    private byte state;
     private TbStudentModel std;
 
     @Id
@@ -76,6 +77,16 @@ public class TbStdChargeModel {
         this.op = op;
     }
 
+    @Basic
+    @Column(name = "state", nullable = false)
+    public byte getState() {
+        return state;
+    }
+
+    public void setState(byte state) {
+        this.state = state;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -84,6 +95,7 @@ public class TbStdChargeModel {
         TbStdChargeModel that = (TbStdChargeModel) o;
 
         if (id != that.id) return false;
+        if (state != that.state) return false;
         if (Double.compare(that.money, money) != 0) return false;
         if (asd != null ? !asd.equals(that.asd) : that.asd != null) return false;
         if (time != null ? !time.equals(that.time) : that.time != null) return false;
@@ -104,6 +116,7 @@ public class TbStdChargeModel {
         result = 31 * result + (time != null ? time.hashCode() : 0);
         result = 31 * result + (opType != null ? opType.hashCode() : 0);
         result = 31 * result + (op != null ? op.hashCode() : 0);
+        result = 31 * result + (int) state;
         return result;
     }
 

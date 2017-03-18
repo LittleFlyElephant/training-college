@@ -6,4 +6,5 @@ package com.raychen.util;
 public class StaticValues {
     public static final int remainMin = 100;
     public static final int activeMin = 1000;
+    public static final int platformID = 10000;
 }

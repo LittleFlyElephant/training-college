@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -17,8 +18,12 @@ import java.util.List;
 @Repository
 public interface StudentDAO extends JpaRepository<TbStudentModel, Integer>{
 
-    public TbStudentModel findByUserName(String username);
+    TbStudentModel findByUserName(String username);
 
-    @Query("select tc from TbCourseModel tc join TbStudyModel ts on tc.id=ts.course.id where ts.std.id=:sid")
-    public List<TbCourseModel> findCourses(@Param("sid") Integer sid);
+    @Query("select tc from TbCourseModel tc join TbStudyModel ts on tc.id=ts.course.id where ts.std.id=:sid and tc.state=1")
+    List<TbCourseModel> findCourses(@Param("sid") Integer sid);
+
+    @Query("select distinct ts from TbStudentModel ts join TbStudyModel tsm on ts.id=tsm.std.id join TbCourseModel tc on tsm.course.id=tc.id where tc.org.id=:oid")
+    Collection<TbStudentModel> findStudentsByOrg(@Param("oid") Integer oid);
+
 }

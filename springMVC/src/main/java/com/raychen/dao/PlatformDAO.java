@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PlatformDAO extends JpaRepository<TbPlatformModel, Integer> {
 
+    public TbPlatformModel findByAdminName(String adminName);
 }

@@ -18,7 +18,6 @@ public class TbOrganizationModel {
     private Double cardBalance;
     private Collection<TbCourseModel> courses;
     private Collection<TbOrgFinancialModel> financials;
-    private Collection<TbOrgFinancialModel> finantials;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -133,17 +132,8 @@ public class TbOrganizationModel {
     public Collection<TbOrgFinancialModel> getFinancials() {
         return financials;
     }
-
     public void setFinancials(Collection<TbOrgFinancialModel> financials) {
         this.financials = financials;
     }
 
-    @OneToMany(mappedBy = "org")
-    public Collection<TbOrgFinancialModel> getFinantials() {
-        return finantials;
-    }
-
-    public void setFinantials(Collection<TbOrgFinancialModel> finantials) {
-        this.finantials = finantials;
-    }
 }

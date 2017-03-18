@@ -14,6 +14,7 @@ public class TbOrgFinancialModel {
     private String time;
     private String op;
     private int opType;
+    private byte state;
     private TbOrganizationModel org;
 
     @Id
@@ -76,6 +77,15 @@ public class TbOrgFinancialModel {
         this.opType = opType;
     }
 
+    @Basic
+    @Column(name = "state", nullable = false)
+    public byte getState() {
+        return state;
+    }
+
+    public void setState(byte state) {
+        this.state = state;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -84,6 +94,7 @@ public class TbOrgFinancialModel {
         TbOrgFinancialModel that = (TbOrgFinancialModel) o;
 
         if (id != that.id) return false;
+        if (state != that.state) return false;
         if (Double.compare(that.money, money) != 0) return false;
         if (opType != that.opType) return false;
         if (asd != null ? !asd.equals(that.asd) : that.asd != null) return false;
@@ -104,6 +115,7 @@ public class TbOrgFinancialModel {
         result = 31 * result + (time != null ? time.hashCode() : 0);
         result = 31 * result + (op != null ? op.hashCode() : 0);
         result = 31 * result + opType;
+        result = 31 * result + (int) state;
         return result;
     }
 

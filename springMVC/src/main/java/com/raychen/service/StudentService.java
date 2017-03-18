@@ -4,6 +4,7 @@ import com.raychen.model.TbCourseModel;
 import com.raychen.model.TbStdChargeModel;
 import com.raychen.model.TbStudentModel;
 import com.raychen.model.TbStudyModel;
+import com.raychen.util.CommonUtil;
 import com.raychen.util.StaticValues;
 import org.springframework.stereotype.Service;
 
@@ -58,18 +59,21 @@ public class StudentService {
     }
 
     //预定课程
-    public int bookCourse(TbStudentModel std, TbCourseModel course){
+    public int bookCourse(TbStudentModel std, double money){
+        if (std.getCardState() != 1) return -1;
         double remain = std.getCardBalance();
-        if (remain<course.getPrice()) return 0;
-        std.setCardBalance(remain-course.getPrice());
-        consume(std, course.getPrice());
+        if (remain<money) return -2;
+        std.setCardBalance(remain-money);
         return 1;
     }
 
     //消费换积分
     public void consume(TbStudentModel std, double money){
         int score = std.getCardScore();
+        double consume = std.getCardConsume();
         std.setCardScore(score+(int)money);
+        std.setCardConsume(consume+money);
+        std.setCardLevel(CommonUtil.getCardLevel(consume+money));
     }
 
     //兑换积分
@@ -99,7 +103,15 @@ public class StudentService {
         return 1;
     }
 
-    public TbStdChargeModel buildCharge(TbStudentModel std, byte asd, double money, String op, int opType){
+    //会员卡检查
+    public void checkCard(TbStudentModel student){
+        int t = judgeCardState(student);
+        if (t<0){
+            student.setCardState((byte) -1);
+        }
+    }
+
+    public TbStdChargeModel buildCharge(TbStudentModel std, byte asd, double money, String op, int opType, byte state){
         TbStdChargeModel charge = new TbStdChargeModel();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         charge.setStd(std);
@@ -108,6 +120,7 @@ public class StudentService {
         charge.setOp(op);
         charge.setOpType(opType);
         charge.setTime(format.format(new Date()));
+        charge.setState(state);
         return charge;
     }
 }

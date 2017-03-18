@@ -11,6 +11,7 @@
         <class>com.raychen.model.TbStudentModel</class>
         <class>com.raychen.model.TbStudyModel</class>
         <class>com.raychen.model.TbStudyPeriodModel</class>
+        <class>com.raychen.model.TbUserModel</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/TCS"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>

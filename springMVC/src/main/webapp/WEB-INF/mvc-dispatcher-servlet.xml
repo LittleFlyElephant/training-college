@@ -19,6 +19,7 @@
 
     <mvc:resources location="/WEB-INF/img/" mapping="/img/**" />
     <mvc:resources location="/WEB-INF/js/" mapping="/js/**" />
+    <mvc:resources location="/WEB-INF/css/" mapping="/css/**" />
 
     <!--ViewResolver 视图解析器-->
     <!--用于支持Servlet、JSP视图解析-->

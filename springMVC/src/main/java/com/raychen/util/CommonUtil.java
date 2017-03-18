@@ -8,6 +8,19 @@ import java.util.Date;
  */
 public class CommonUtil {
 
+    public static int getCardLevel(double consume){
+        if (consume == 0) return 0;
+        else if (consume<100) return 1;
+        else if (consume<1000) return 2;
+        else if (consume<5000) return 3;
+        else if (consume<10000) return 4;
+        else return 5;
+    }
+
+    public static double getDiscountValue(double money, int level){
+        return money*(1-level*0.05);
+    }
+
     public static Integer generateCode(int len){
         int tmp = (int) (Math.random()*9) + 1;
         for (int i = 0; i < len-1; i++) {

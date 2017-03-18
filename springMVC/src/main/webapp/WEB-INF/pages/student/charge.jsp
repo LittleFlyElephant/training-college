@@ -4,26 +4,33 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <stripes:layout-render name="/WEB-INF/pages/layout/layout.jsp" pageTitle="学生-充值会员卡" act="3" page="std">
     <stripes:layout-component name="content">
-        <h1>我的会员卡: </h1>
+        <h3>会员卡充值
+            <a href="/student/card" type="button" class="btn btn-default">返回</a>
+        </h3>
         <hr>
-        <form:form action="/student/handle_charge" method="post" commandName="userCharge" role="form">
+        <form:form cssClass="form-horizontal" action="/student/handle_charge" method="post" commandName="userCharge" role="form">
             <div class="form-group">
-                <label for="firstName">卡余额:</label>
-                <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Enter Nickname:"
-                       value="${user.cardBalance}"/>
+                <label for="balance" class="col-md-2 control-label">卡余额:</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="balance" disabled value="${user.cardBalance}"/>
+                </div>
             </div>
             <div class="form-group">
-                <label for="firstName">持有人:</label>
-                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter FirstName:"
-                       value="${user.userName}"/>
+                <label for="user" class="col-md-2 control-label">持有人:</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="user" disabled value="${user.userName}"/>
+                </div>
             </div>
             <div class="form-group">
-                <label for="money">充值金额:</label>
-                <input type="text" class="form-control" id="money" name="money" placeholder="Enter Price:"/>
+                <label for="money" class="col-md-2 control-label">充值金额:</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="money" name="money" placeholder="输入充值金额:"/>
+                </div>
             </div>
-
             <div class="form-group">
-                <button type="submit" class="btn btn-sm btn-success">充值</button>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default btn-success">充值</button>
+                </div>
             </div>
         </form:form>
     </stripes:layout-component>

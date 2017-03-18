@@ -2,11 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<stripes:layout-render name="/WEB-INF/pages/organization/org-layout.jsp" pageTitle="机构-课程详情" act="3" username="${org.orgName}">
+<stripes:layout-render name="/WEB-INF/pages/layout/layout.jsp" page="org" pageTitle="机构-修改课程" act="3">
     <stripes:layout-component name="content">
         <h1>修改课程详情: </h1>
         <hr>
-        <form:form action="/organization/${org.id}/course/${course.id}/detail" method="post" commandName="course" role="form">
+        <form:form action="/organization/course/${course.id}/modify" method="post" commandName="course" role="form">
             <div class="form-group">
                 <label for="title">课程名:</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="输入课程名:"
@@ -26,6 +26,18 @@
                 <input type="text" class="form-control" id="price" name="price" placeholder="输入课程价格:"
                        value="${course.price}"/>
             </div>
+            <div class="form-group">
+                <label for="period">课时:</label>
+                <input type="text" class="form-control" id="period" name="period" placeholder="输入课时:"
+                       value="${course.period}"/>
+            </div>
+            <div class="form-group">
+                <label for="content">简介</label>
+                <textarea class="form-control" id="content" name="content" rows="3" placeholder="输入简介">
+                    ${course.content}
+                </textarea>
+            </div>
+            <input type="text" name="id" hidden value="${course.id}"/>
             <div class="form-group">
                 <button type="submit" class="btn btn-sm btn-success">提交修改</button>
             </div>

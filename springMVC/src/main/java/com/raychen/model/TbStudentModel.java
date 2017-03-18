@@ -18,6 +18,7 @@ public class TbStudentModel {
     private int cardId;
     private Byte cardState;
     private Double cardBalance;
+    private Double cardConsume;
     private Integer cardScore;
     private Integer cardLevel;
     private Collection<TbStdChargeModel> charges;
@@ -114,6 +115,16 @@ public class TbStudentModel {
     }
 
     @Basic
+    @Column(name = "card_consume", nullable = true, precision = 0)
+    public Double getCardConsume() {
+        return cardConsume;
+    }
+
+    public void setCardConsume(Double cardConsume) {
+        this.cardConsume = cardConsume;
+    }
+
+    @Basic
     @Column(name = "card_score", nullable = true)
     public Integer getCardScore() {
         return cardScore;
@@ -149,6 +160,7 @@ public class TbStudentModel {
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (cardState != null ? !cardState.equals(that.cardState) : that.cardState != null) return false;
         if (cardBalance != null ? !cardBalance.equals(that.cardBalance) : that.cardBalance != null) return false;
+        if (cardConsume != null ? !cardConsume.equals(that.cardConsume) : that.cardConsume != null) return false;
         if (cardScore != null ? !cardScore.equals(that.cardScore) : that.cardScore != null) return false;
         if (cardLevel != null ? !cardLevel.equals(that.cardLevel) : that.cardLevel != null) return false;
 
@@ -166,6 +178,7 @@ public class TbStudentModel {
         result = 31 * result + cardId;
         result = 31 * result + (cardState != null ? cardState.hashCode() : 0);
         result = 31 * result + (cardBalance != null ? cardBalance.hashCode() : 0);
+        result = 31 * result + (cardConsume != null ? cardConsume.hashCode() : 0);
         result = 31 * result + (cardScore != null ? cardScore.hashCode() : 0);
         result = 31 * result + (cardLevel != null ? cardLevel.hashCode() : 0);
         return result;

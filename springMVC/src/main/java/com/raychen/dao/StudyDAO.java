@@ -17,6 +17,6 @@ public interface StudyDAO extends JpaRepository<TbStudyModel, Integer> {
     @Query("select ts from TbStudyModel ts where ts.std.id=:stdId and ts.course.id=:cid")
     public TbStudyModel findStudy(@Param("stdId") Integer stdId, @Param("cid") Integer cid);
 
-    @Query("select ts from TbStudyModel ts where ts.course.id=:cid and ts.state>=0")
+    @Query("select ts from TbStudyModel ts where ts.course.id=:cid")
     public List<TbStudyModel> findStudyByCourse(@Param("cid") Integer cid);
 }

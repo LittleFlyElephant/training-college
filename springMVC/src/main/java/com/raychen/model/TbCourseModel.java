@@ -19,6 +19,7 @@ public class TbCourseModel {
     private Integer period;
     private TbOrganizationModel org;
     private Collection<TbStudyModel> studies;
+    private Collection<TbUserModel> users;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -151,5 +152,14 @@ public class TbCourseModel {
 
     public void setStudies(Collection<TbStudyModel> studies) {
         this.studies = studies;
+    }
+
+    @OneToMany(mappedBy = "cid")
+    public Collection<TbUserModel> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Collection<TbUserModel> users) {
+        this.users = users;
     }
 }
